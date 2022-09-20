@@ -138,7 +138,7 @@ def calculate_stock_data(data):
         average = sum(int_column) / len(int_column)
         stock_num = average * 1.1
         new_stock_data.append(round(stock_num))
-    
+
     return new_stock_data
 
 
@@ -157,4 +157,21 @@ def main():
 
 
 print('Welcome to Love Sandwiches Data Automation')
-main()
+stock_data = main()
+
+
+# Code Institute Challenge
+
+def get_stock_values(data):
+    """
+    Print out the calculated stock numbers for each sandwich type.
+    """
+    headings = SHEET.worksheet("stock").get_all_values()[0]
+    data = SHEET.worksheet("stock").get_all_values()[-1]
+    print("Make the following numbers of sandwiches for next market day:\n")
+    predict = dict(zip(headings, data))
+    return predict
+
+
+stock_values = get_stock_values(stock_data)
+print(stock_values)
